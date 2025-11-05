@@ -22,222 +22,157 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
-            --stripe-blue: #635bff;
-            --stripe-blue-dark: #4a42d4;
-            --stripe-text: #1a1a1a;
-            --stripe-light-text: #6b7c93;
-            --stripe-border: #e0e6ed;
-            --stripe-light-bg: #f6f9fc;
-            --stripe-success: #24b47e;
-            --stripe-error: #ff5252;
-            --stripe-step-active: #635bff;
-            --stripe-step-completed: #24b47e;
-            --stripe-step-pending: #e0e6ed;
+            --primary-color: #dc3545;
+            --secondary-color: #6c757d;
+            --glass-bg: rgba(255, 255, 255, 0.5);
+            --glass-border: rgba(255, 255, 255, 0.3);
         }
-        
+
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--stripe-text);
-            background-color: var(--stripe-light-bg);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        
+
         .payment-container {
             max-width: 600px;
-            margin: 2rem auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            margin: 2rem;
+            background: var(--glass-bg);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
             overflow: hidden;
-            border: 1px solid var(--stripe-border);
+            text-align: center;
+            padding: 2rem;
         }
-        
-        
+
+        .failure-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: white;
+            font-size: 3rem;
+            animation: bounceIn 0.5s ease-in-out;
+        }
+
         @keyframes bounceIn {
             0% { transform: scale(0.5); opacity: 0; }
             70% { transform: scale(1.1); }
             100% { transform: scale(1); opacity: 1; }
         }
-        
-        .detail-row {
-            display: flex;
-            margin-bottom: 12px;
-        }
-        
-        .detail-label {
-            font-weight: 500;
-            min-width: 120px;
-            color: var(--stripe-light-text);
-            font-size: 14px;
-        }
-        
-        .detail-value {
-            font-weight: 500;
-            flex: 1;
-        }
-        
-        .btn-done {
-            background: var(--stripe-blue);
-            color: white;
-            border: none;
-            width: 100%;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 500;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 16px;
-        }
-        
-        .btn-done:hover {
-            background: var(--stripe-blue-dark);
-        }
-        
-        .btn-print {
-            background: white;
-            color: var(--stripe-blue);
-            border: 1px solid var(--stripe-blue);
-            width: 100%;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 500;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 12px;
-        }
-        
-        .btn-print:hover {
-            background: var(--stripe-light-bg);
-        }
-        
-        /* Failure page styles */
-        .failure-page {
-            text-align: center;
-            padding: 40px 24px;
-        }
-        
-        .failure-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--stripe-error);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            color: white;
-            font-size: 24px;
-            animation: bounceIn 0.5s ease-in-out;
-        }
-        
+
         .failure-title {
-            font-size: 24px;
+            font-size: 2rem;
             font-weight: 600;
-            margin-bottom: 12px;
-            color: var(--stripe-error);
+            margin-bottom: 1rem;
+            color: var(--primary-color);
         }
-        
+
         .failure-message {
-            color: var(--stripe-light-text);
-            margin-bottom: 24px;
-            font-size: 15px;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
         }
-        
+
         .failure-details {
-            background: var(--stripe-light-bg);
-            border-radius: 8px;
-            padding: 16px;
-            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
             text-align: left;
         }
-        
-        .btn-retry {
-            background: var(--stripe-blue);
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+
+        .detail-label {
+            font-weight: 500;
+            color: var(--secondary-color);
+        }
+
+        .detail-value {
+            font-weight: 500;
+        }
+
+        .btn-cancel {
+            background: var(--primary-color);
             color: white;
             border: none;
             width: 100%;
-            padding: 14px;
-            font-size: 15px;
+            padding: 1rem;
+            font-size: 1rem;
             font-weight: 500;
-            border-radius: 8px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 16px;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
         }
-        
-        .btn-retry:hover {
-            background: var(--stripe-blue-dark);
-        }
-        
-        .btn-cancel {
-            background: white;
-            color: var(--stripe-error);
-            border: 1px solid var(--stripe-error);
-            width: 100%;
-            padding: 14px;
-            font-size: 15px;
-            font-weight: 500;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            margin-top: 12px;
-        }
-        
+
         .btn-cancel:hover {
-            background: rgba(255, 82, 82, 0.05);
+            background: #c82333;
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
-    <!-- Failure Page (shown when payment fails or is canceled) -->
-    <div class="payment-container" id="failure-page">
-        <div class="failure-page">
-            <div class="failure-icon">
-                <i class="fas fa-times"></i>
-            </div>
-            <h1 class="failure-title">Transaction Failed</h1>
-            <p class="failure-message" id="failure-message">You have cancelled this Transaction.</p>
-            
-            <?php
-                if(isset($settings['auto_redirect']) && $settings['auto_redirect'] == "Enable"){
-            ?>
-                   <p class="countdown-message">Redirecting in <span id="countdown">4</span> seconds...</p>
-            <?php
-                }
-            ?>
-            
-            <div class="failure-details">
-                <div class="detail-row">
-                    <div class="detail-label">Error Code</div>
-                    <div class="detail-value">Failed</div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Invoice ID</div>
-                    <div class="detail-value" id="failure-date"><?php echo $transaction_details['response'][0]['pp_id']?></div>
-                </div>
-                <div class="detail-row">
-                    <div class="detail-label">Amount</div>
-                    <div class="detail-value"><?php echo number_format($transaction_details['response'][0]['transaction_amount']+$transaction_details['response'][0]['transaction_fee'], 2).$transaction_details['response'][0]['transaction_currency']?></div>
-                </div>
-            </div>
-            
-            <?php
-                if($transaction_details['response'][0]['transaction_cancel_url'] == "" || $transaction_details['response'][0]['transaction_cancel_url'] == "--"){
-                    
-                }else{
-            ?>
-                    <a href="<?php echo $transaction_details['response'][0]['transaction_cancel_url']?>">
-                        <button class="btn-cancel" id="cancel-button">
-                            <i class="fas fa-times"></i> Back to website
-                        </button>
-                    </a>
-            <?php
-                }
-            ?>
+    <div class="payment-container">
+        <div class="failure-icon">
+            <i class="fas fa-times"></i>
         </div>
+        <h1 class="failure-title">Transaction Failed</h1>
+        <p class="failure-message" id="failure-message">You have cancelled this Transaction.</p>
+        
+        <?php
+            if(isset($settings['auto_redirect']) && $settings['auto_redirect'] == "Enable"){
+        ?>
+               <p class="countdown-message">Redirecting in <span id="countdown">4</span> seconds...</p>
+        <?php
+            }
+        ?>
+        
+        <div class="failure-details">
+            <div class="detail-row">
+                <div class="detail-label">Error Code</div>
+                <div class="detail-value">Failed</div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Invoice ID</div>
+                <div class="detail-value" id="failure-date"><?php echo $transaction_details['response'][0]['pp_id']?></div>
+            </div>
+            <div class="detail-row">
+                <div class="detail-label">Amount</div>
+                <div class="detail-value"><?php echo number_format($transaction_details['response'][0]['transaction_amount']+$transaction_details['response'][0]['transaction_fee'], 2).$transaction_details['response'][0]['transaction_currency']?></div>
+            </div>
+        </div>
+        
+        <?php
+            if($transaction_details['response'][0]['transaction_cancel_url'] == "" || $transaction_details['response'][0]['transaction_cancel_url'] == "--"){
+                
+            }else{
+        ?>
+                <a href="<?php echo $transaction_details['response'][0]['transaction_cancel_url']?>">
+                    <button class="btn-cancel" id="cancel-button">
+                        <i class="fas fa-times"></i> Back to website
+                    </button>
+                </a>
+        <?php
+            }
+        ?>
     </div>
 
     <!-- Bootstrap JS Bundle with Popper -->
@@ -248,14 +183,9 @@
     ?>
             <script>
                 document.addEventListener('DOMContentLoaded', function() {
-                    // Show the success page (in case it was hidden)
-                    document.getElementById('success-page').style.display = 'block';
-                    
-                    // Countdown functionality
                     let countdown = 4;
                     const countdownElement = document.getElementById('countdown');
                     
-                    // Update countdown every second
                     const countdownInterval = setInterval(function() {
                         countdown--;
                         countdownElement.textContent = countdown;
